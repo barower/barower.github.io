@@ -2,7 +2,7 @@
 layout: post
 title:  "Booting ZynqMP With GPT"
 date:   2019-08-10 12:30:00 +0200
-categories: embedded linux booting
+categories: embedded
 ---
 # Booting ZynqMP With GPT
 
