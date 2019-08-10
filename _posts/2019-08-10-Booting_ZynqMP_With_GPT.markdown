@@ -4,13 +4,15 @@ title:  "Booting ZynqMP With GPT"
 date:   2019-08-10 12:30:00 +0200
 categories: embedded
 ---
-# Booting ZynqMP With GPT
+# Booting Zynq UltraScale+ from SD Card With GPT Instead of MBR
 
-1. Backup original MBR to file
+* Backup original MBR to file
+
        
     dd if=path_to_device of=MBR.orig count=512 bs=1
 
-2. Find location of your FAT partitions
+* Find location of your FAT partition (the one of type Microsoft basic data)
+
 
     fdisk -l path_to_device
 
@@ -19,7 +21,8 @@ categories: embedded
     Device          Start     End Sectors   Size   Type
     path_to_device  2048   135167  133120    65M   Microsoft basic data
 
-3. Temporarily generate MBR entry for your FAT partition (this WILL destroy your MBR, that's why we made backup earlier)
+* Temporarily generate MBR entry for your FAT partition (this WILL destroy current your MBR, that's why we made backup earlier)
+
 
     fdisk -t dos path_to_device
     
@@ -83,15 +86,18 @@ categories: embedded
     
     The kernel still uses the old table. The new table will be used at the next reboot or after you run partprobe(8) or kpartx(8).
   
-### Save new MBR to temporary file
+* Save new MBR to temporary file
 
-  dd if=path_to_device of=MBR.temp count=512 bs=1
 
-### Move original GPT entry to second entry in temporary MBR
+    dd if=path_to_device of=MBR.temp count=512 bs=1
 
-  dd conv=notrunc bs=1 count=16 skip=446 if=MBR.orig of=MBR.temp seek=462
+* Move original GPT entry to second entry in temporary MBR
 
-### Move created MBR back to your image
 
-  dd if=MBR.temp of=path_to_device count=512 bs=1
-        
+    dd conv=notrunc bs=1 count=16 skip=446 if=MBR.orig of=MBR.temp seek=462
+
+* Move created MBR back to your image
+
+
+    dd if=MBR.temp of=path_to_device count=512 bs=1
+
