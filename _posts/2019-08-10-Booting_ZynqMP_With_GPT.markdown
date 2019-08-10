@@ -1,30 +1,30 @@
 ---
 layout: post
-title:  "Booting ZynqMP With GPT"
+title:  "Booting Zynq UltraScale+ From SD Card With GPT Instead Of MBR"
 date:   2019-08-10 12:30:00 +0200
 categories: embedded
 ---
-# Booting Zynq UltraScale+ from SD Card With GPT Instead of MBR
+# How to do it from terminal
 
 * Backup original MBR to file
 
-       
-    dd if=path_to_device of=MBR.orig count=512 bs=1
 
-* Find location of your FAT partition (the one of type Microsoft basic data)
+>dd if=path_to_device of=MBR.orig count=512 bs=1
+
+* Find start and end sectors of your FAT partition (the one of type Microsoft basic data)
 
 
-    fdisk -l path_to_device
+>fdisk -l path_to_device
 
   You should see something similar to:
 
     Device          Start     End Sectors   Size   Type
     path_to_device  2048   135167  133120    65M   Microsoft basic data
 
-* Temporarily generate MBR entry for your FAT partition (this WILL destroy current your MBR, that's why we made backup earlier)
+* Temporarily generate valid MBR entry for your FAT partition (this WILL destroy your current MBR, that's why we made backup earlier)
 
 
-    fdisk -t dos path_to_device
+>fdisk -t dos path_to_device
     
  Then:
     
@@ -89,15 +89,15 @@ categories: embedded
 * Save new MBR to temporary file
 
 
-    dd if=path_to_device of=MBR.temp count=512 bs=1
+>dd if=path_to_device of=MBR.temp count=512 bs=1
 
 * Move original GPT entry to second entry in temporary MBR
 
 
-    dd conv=notrunc bs=1 count=16 skip=446 if=MBR.orig of=MBR.temp seek=462
+>dd conv=notrunc bs=1 count=16 skip=446 if=MBR.orig of=MBR.temp seek=462
 
 * Move created MBR back to your image
 
 
-    dd if=MBR.temp of=path_to_device count=512 bs=1
+>dd if=MBR.temp of=path_to_device count=512 bs=1
 
