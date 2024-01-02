@@ -5,45 +5,59 @@ body {
 }
 
 canvas {
-    display: block;
+    display: flex;
+}
+
+#overlayText,
+#overlayTextBottom {
+    position: absolute;
+    color: white;
+    font-family: 'Michroma', sans-serif; /* Use the Michroma font */
+    text-align: center;
 }
 
 #overlayText {
-    position: absolute;
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    color: white;
     font-size: 30px;
-    font-family: 'Michroma', sans-serif; /* Use the Michroma font */
-    text-align: center;
-}
-
-#overlayText a {
-    color: #eeeeee; /* Link color */
-    text-decoration: none;
-}
-
-#overlayText a:hover {
-    text-decoration: underline; /* Underline on hover */
 }
 
 #overlayTextBottom {
-    position: absolute;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    color: white;
     font-size: 15px;
-    font-family: 'Michroma', sans-serif; /* Use the Michroma font */
-    text-align: center;
 }
 
+#overlayText a,
 #overlayTextBottom a {
     color: #eeeeee; /* Link color */
     text-decoration: none;
 }
 
+#overlayText a:hover,
 #overlayTextBottom a:hover {
     text-decoration: underline; /* Underline on hover */
+}
+
+/* Media query for adjusting text position in vertical view */
+@media screen and (max-width: 600px) {
+    #overlayText,
+    #overlayTextBottom {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+
+    #overlayText {
+        top: 10px;
+        font-size: 20px;
+    }
+
+    #overlayTextBottom {
+        bottom: 10px;
+        font-size: 12px;
+    }
 }

@@ -1,0 +1,38 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ensure the body takes at least the full height of the viewport */
+    background: linear-gradient(to bottom, #1a1a1a, #333333); /* Gradient background */
+    color: #fff; /* Text color */
+    padding: 20px;
+    font-family: 'Michroma', sans-serif; /* Use Michroma font */
+    max-width: 60%; /* Set maximum width for content */
+    margin: 0 auto; /* Center content within the viewport */
+}
+
+h1, h2, p {
+    margin-bottom: 15px;
+}
+
+img {
+    max-width: 100%; /* Set max-width to allow responsiveness */
+    height: auto;
+    margin: 20px 0; /* Add margin top and bottom for spacing */
+}
+
+section {
+    text-align: left; /* Left align text inside sections */
+}
+
+a {
+    color: #4CAF50; /* Link color */
+    display: block;
+    margin-top: 30px; /* Add space above the backlink */
+}
+
+.backlink {
+    margin-top: auto; /* Push the backlink to the bottom of the flex container */
+    margin-bottom: 30px; /* Add space below the backlink */
+}
