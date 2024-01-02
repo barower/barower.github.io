@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+canvas {
+    display: block;
+}
+
+#overlayText {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 30px;
+    font-family: 'Michroma', sans-serif; /* Use the Michroma font */
+    text-align: center;
+}
+
+#overlayText a {
+    color: #eeeeee; /* Link color */
+    text-decoration: none;
+}
+
+#overlayText a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+#overlayTextBottom {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 15px;
+    font-family: 'Michroma', sans-serif; /* Use the Michroma font */
+    text-align: center;
+}
+
+#overlayTextBottom a {
+    color: #eeeeee; /* Link color */
+    text-decoration: none;
+}
+
+#overlayTextBottom a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
